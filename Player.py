@@ -61,8 +61,8 @@ class Player(pygame.sprite.Sprite):
             dy = float(my - self.rect.y)
             mag = math.sqrt(dx**2 + dy**2)
             if not(mag == 0):
-                dx *= 20.0 / mag
-                dy *= 20.0 / mag
+                dx *= 10.0 / mag
+                dy *= 10.0 / mag
                 Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
             self.shoot_countdown = 10
         else:
