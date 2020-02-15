@@ -1,5 +1,6 @@
 import pygame
 import Constants
+import Bullet
 
 class Player(pygame.sprite.Sprite):
 
@@ -19,7 +20,8 @@ class Player(pygame.sprite.Sprite):
         # Set speed vector
         self.change_x = 0
         self.change_y = 0
-        #self.walls = None
+        
+        self.bullets = []
  
     def changespeed(self, x, y):
         """ Change the speed of the player. """
@@ -28,6 +30,9 @@ class Player(pygame.sprite.Sprite):
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
+
+    def shoot(self):
+        self.bullets.append(Bullet(self.x, self.y, self.change_x, self.change_y))
 
     def update(self):
         """ Update the player position. """
@@ -44,7 +49,7 @@ class Player(pygame.sprite.Sprite):
         
         self.rect.y += self.change_y
  
-        if self.rect.x < 0 or self.rect.x > Constants.SCREEN_HEIGHT:
+        if self.rect.y < 0 or self.rect.y > Constants.SCREEN_HEIGHT:
             # Reset our position based on the top/bottom of the object.
             if self.change_y > 0:
                 self.rect.bottom = Constants.SCREEN_HEIGHT

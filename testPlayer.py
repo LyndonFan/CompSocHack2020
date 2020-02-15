@@ -55,6 +55,11 @@ while not done:
             elif event.key == pygame.K_DOWN:
                 player1.changespeed(0, 3)
                 player2.changespeed(0, -3)
+            elif event.key == pygame.K_SPACE:
+                player1.shoot()
+                player2.shoot()
+                all_sprite_list.add(player1.bullets[-1])
+                all_sprite_list.add(player2.bullets[-1])
  
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
@@ -69,6 +74,7 @@ while not done:
             elif event.key == pygame.K_DOWN:
                 player2.changespeed(0, 3)
                 player1.changespeed(0, -3)
+
      
     all_sprite_list.update()
  
