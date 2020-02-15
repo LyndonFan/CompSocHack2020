@@ -1,5 +1,14 @@
 import pygame
 
+# Colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+BLUE = (50, 50, 255)
+ 
+# Screen dimensions
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
 class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
