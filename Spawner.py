@@ -3,6 +3,7 @@ from Game import Game
 from Enemy import Enemy
 from Constants import Constants
 import random
+import math
 class Spawner:
     threshhold = 10000.0
     minEnemies = 1
@@ -10,7 +11,7 @@ class Spawner:
     lastSpawn = 0.0
     safeZone = 200.0
     def canSpawn(t):
-        minEnemies = 1.0+math.max
+        Spawner.minEnemies = 1.0+math.log(max(Game.score,1.0))
         if len(Game.enemies) < Spawner.minEnemies:
             Spawner.lastSpawn = t
             return True
