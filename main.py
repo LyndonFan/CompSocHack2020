@@ -1,21 +1,19 @@
 import pygame
 from Enemy import Enemy
 from Constants import Constants
-from PlayerController import PlayerController
 from Game import Game
 from pygame.locals import *
 import sys
 import random
 import math
-from Player import Player
 pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((Constants.SCREEN_WIDTH,Constants.SCREEN_HEIGHT))
 
-for i in range(1):
+for i in range(10):
     th = random.random()*math.pi*2
-    dx = 1#i*math.cos(th)
-    dy = 1#i/10*math.sin(th)
+    dx = i*math.cos(th)
+    dy = i*math.sin(th)
     Game.enemies.append(Enemy(Constants.SCREEN_WIDTH/2 ,Constants.SCREEN_HEIGHT/2 , dx, dy))
 
 
