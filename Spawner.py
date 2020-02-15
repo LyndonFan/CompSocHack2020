@@ -1,6 +1,7 @@
 
 from Game import Game
 from Enemy import Enemy
+from Power import Power
 from Constants import Constants
 import random
 import math
@@ -13,7 +14,20 @@ class Spawner:
 
     lastPower = 0.0
     def canPower(t):
-        pass
+        if t-Spawner.lastPower > Spawner.threshhold:
+            Spawner.lastPower = t
+            return True
+        return False
+    def enemy():
+        spawned = False
+        while not spawned:
+            px = random.randint(0,Constants.SCREEN_WIDTH)
+            py = random.randint(0,Constants.SCREEN_HEIGHT)
+            if ((px-Game.player.player.rect.centerx)**2 + (py-Game.player.player.rect.centery)**2 > Constants.SAFE_ZONE**2):
+                if ((px - Game.player.shadow.rect.centerx) ** 2 + (py - Game.player.shadow.rect.centery) ** 2 > Constants.SAFE_ZONE ** 2):
+                    spawned = True
+                    Power(px,py)
+
     def canSpawn(t):
         Spawner.minEnemies = 1.0+math.log(max(Game.score,1.0))
         if len(Game.enemies) < Spawner.minEnemies:

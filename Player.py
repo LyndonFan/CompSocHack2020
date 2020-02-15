@@ -23,6 +23,8 @@ class Player(pygame.sprite.Sprite):
         self.change_y = 0
 
         self.shoot_countdown = 0
+        self.power_counter = 0
+        self.shoot_mode = 0
 
     def changespeed(self, x, y):
         """ Change the speed of the player. """
@@ -54,7 +56,12 @@ class Player(pygame.sprite.Sprite):
                 self.rect.bottom = Constants.SCREEN_HEIGHT
             else:
                 self.rect.top = 0
-        
+        #logic for shooting modes
+        if self.power_counter > 0:
+            self.power_counter -= 1
+            if self.power_counter == 0:
+                self.shoot_mode = 0
+
         if self.shoot_countdown==0:
             from Game import Game
             mx,my = pygame.mouse.get_pos()
