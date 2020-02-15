@@ -1,6 +1,6 @@
 import pygame
 from Constants import Constants
-
+from Game import Game
 class Bullet(pygame.sprite.Sprite):
 
     def __init__(self, x, y, change_x, change_y):
@@ -31,4 +31,4 @@ class Bullet(pygame.sprite.Sprite):
 
         # Did this update cause us to hit a wall?
         if self.rect.x < 0 or self.rect.x > Constants.SCREEN_WIDTH or self.rect.y < 0 or self.rect.y > Constants.SCREEN_HEIGHT:
-            del self
+            Game.bullets.remove(self)
