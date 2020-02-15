@@ -4,6 +4,7 @@ from Player import *
 # Colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
+TRANS = (255, 255, 255, 170)
 BLUE = (50, 50, 255)
  
 # Screen dimensions
@@ -23,8 +24,8 @@ pygame.display.set_caption('Test')
 all_sprite_list = pygame.sprite.Group()
  
 # Create the player paddle object
-player1 = Player(SCREEN_WIDTH//2 - 50, SCREEN_HEIGHT//2)
-player2 = Player(SCREEN_WIDTH//2 + 50, SCREEN_HEIGHT//2)
+player1 = Player(SCREEN_WIDTH//2 - 50, SCREEN_HEIGHT//2, WHITE)
+player2 = Player(SCREEN_WIDTH//2 + 50, SCREEN_HEIGHT//2, TRANS)
 
 
 all_sprite_list.add(player1)
