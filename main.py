@@ -1,5 +1,6 @@
 import pygame
 from Enemy import Enemy
+from Spawner import Spawner
 from Constants import Constants
 from Game import Game
 from pygame.locals import *
@@ -13,17 +14,19 @@ screen = pygame.display.set_mode((Constants.SCREEN_WIDTH,Constants.SCREEN_HEIGHT
 font = pygame.font.SysFont("arial", 24)
 
 while True:
-
+    Game.initPlayer()
     Game.score = 0
     Game.enemies = []
     Game.bullets = []
-    for i in range(10):
-        th = random.random()*math.pi*2
-        dx = i*math.cos(th)
-        dy = i*math.sin(th)
-        Game.enemies.append(Enemy(Constants.SCREEN_WIDTH/2 ,Constants.SCREEN_HEIGHT/2 , dx, dy))
+    # for i in range(10):
+    #     th = random.random()*math.pi*2
+    #     dx = i*math.cos(th)
+    #     dy = i*math.sin(th)
+    #     Game.enemies.append(Enemy(Constants.SCREEN_WIDTH/2 ,Constants.SCREEN_HEIGHT/2 , dx, dy))
 
     while Game.player.alive:
+        if Spawner.canSpawn(pygame.time.get_ticks()):
+            Spawner.spawn()
         for event in pygame.event.get():
             if event.type == QUIT:
                 print("Score = " , Game.score)
@@ -55,7 +58,8 @@ while True:
             if event.type == QUIT:
                 print("Score = " , Game.score)
                 sys.exit()
-
+            if not (Game.player.alive) and event.type == pygame.MOUSEBUTTONDOWN:
+                Game.player.alive = True
         text = font.render("YOU DIED\nSCORE: "+str(Game.score)+"\nCLICK TO RESTART", True, (255, 255, 255))
 
         screen.fill((50,0,0))

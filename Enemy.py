@@ -19,7 +19,7 @@ class Enemy(pygame.sprite.Sprite):
         self.dx = dx
         self.dy = dy
         #place the enemy at the centre of the screen
-
+        Game.enemies.append(self)
     def draw(self,surface):
         surface.blit(self.image,self.rect)
 

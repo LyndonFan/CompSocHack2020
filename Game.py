@@ -4,3 +4,5 @@ class Game:
     bullets = []
     score = 0
     player = PlayerController()
+    def initPlayer():
+        Game.player = PlayerController()

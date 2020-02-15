@@ -43,8 +43,7 @@ class PlayerController:
                     self.shadow.changespeed(0, 3)
                     self.player.changespeed(0, -3) 
            
-        if not(self.alive) and event.type == pygame.mouse.MOUSEBUTTONDOWN:
-            self.alive = True
+
 
     def update(self,en):
         if self.player.rect.collidelist(en) >= 0:
