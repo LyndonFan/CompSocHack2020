@@ -53,7 +53,6 @@ class Enemy(pygame.sprite.Sprite):
         b = self.rect.collidelist(Game.bullets)
         if b >= 0:
             Game.bullets.pop(b)
-            print("Enemy was shot")
             Game.score += 1
 
             return True

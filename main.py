@@ -27,6 +27,8 @@ while True:
     while Game.player.alive:
         if Spawner.canSpawn(pygame.time.get_ticks()):
             Spawner.spawn()
+        if Spawner.canPower(pygame.time.get_ticks()):
+            Spawner.power()
         for event in pygame.event.get():
             if event.type == QUIT:
                 print("Score = " , Game.score)
@@ -43,6 +45,9 @@ while True:
         for b in Game.bullets:
             b.update()
             b.draw(screen)
+        for p in Game.powers:
+            p.update()
+            p.draw(screen)
         Game.player.update(Game.enemies)
 
         text = font.render("SCORE: "+str(Game.score), True, (255, 255, 255))

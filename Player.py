@@ -60,18 +60,35 @@ class Player(pygame.sprite.Sprite):
         if self.power_counter > 0:
             self.power_counter -= 1
             if self.power_counter == 0:
+                print("Reset time")
                 self.shoot_mode = 0
 
         if self.shoot_countdown==0:
             from Game import Game
-            mx,my = pygame.mouse.get_pos()
-            dx = float(mx - self.rect.x)
-            dy = float(my - self.rect.y)
-            mag = math.sqrt(dx**2 + dy**2)
-            if not(mag == 0):
-                dx *= 10.0 / mag
-                dy *= 10.0 / mag
-                Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
-            self.shoot_countdown = 10
+            if self.shoot_mode == 0:
+                mx,my = pygame.mouse.get_pos()
+                dx = float(mx - self.rect.x)
+                dy = float(my - self.rect.y)
+                mag = math.sqrt(dx**2 + dy**2)
+                if not(mag == 0):
+                    dx *= 10.0 / mag
+                    dy *= 10.0 / mag
+                    Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
+                self.shoot_countdown = 10
+            if self.shoot_mode == 1:
+                mx,my = pygame.mouse.get_pos()
+                dx = float(mx - self.rect.x)
+                dy = float(my - self.rect.y)
+                mag = math.sqrt(dx**2 + dy**2)
+                if not(mag == 0):
+                    dx *= 10.0 / mag
+                    dy *= 10.0 / mag
+                    Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
+                self.shoot_countdown = 1
+            if self.shoot_mode == 2:
+                for i in range(10):
+                    th = float(math.pi*2*i/10.0)
+                    Game.bullets.append(Bullet(self.rect.x,self.rect.y,10*math.cos(th),10*math.sin(th)))
+                self.shoot_countdown = 10
         else:
             self.shoot_countdown -= 1

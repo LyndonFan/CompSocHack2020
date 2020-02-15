@@ -17,8 +17,8 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.x = x
  
         # Set speed vector
-        self.change_x = change_x
-        self.change_y = change_y
+        self.change_x = float(change_x)
+        self.change_y = float(change_y)
 
     def draw(self, surface):
         surface.blit(self.image,self.rect)
