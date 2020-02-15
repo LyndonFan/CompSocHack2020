@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
         self.change_y = 0
         
-        self.bullets = []
+        # self.bullets = []
  
     def changespeed(self, x, y):
         """ Change the speed of the player. """
@@ -33,13 +33,14 @@ class Player(pygame.sprite.Sprite):
         surface.blit(self.image,self.rect)
 
     def shoot(self, target_x, target_y):
+        from Game import Game
         dx = float(target_x - self.rect.x)
         dy = float(target_y - self.rect.y)
         mag = math.sqrt(dx**2 + dy**2)
         if not(mag == 0):
             dx *= 10.0 / mag
             dy *= 10.0 / mag
-            self.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
+            Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
 
     def update(self):
         """ Update the player position. """
@@ -47,7 +48,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.change_x
  
         # Did this update cause us to hit a wall?
-        if self.rect.x < 0 or self.rect.x > Constants.SCREEN_WIDTH:
+        if self.rect.x < 0 or self.rect.x > Constants.SCREEN_WIDTH - self.rect.width:
             if self.change_x > 0:
                 self.rect.right = Constants.SCREEN_WIDTH
             else:
@@ -56,7 +57,7 @@ class Player(pygame.sprite.Sprite):
         
         self.rect.y += self.change_y
  
-        if self.rect.y < 0 or self.rect.y > Constants.SCREEN_HEIGHT:
+        if self.rect.y < 0 or self.rect.y > Constants.SCREEN_HEIGHT - self.rect.height:
             # Reset our position based on the top/bottom of the object.
             if self.change_y > 0:
                 self.rect.bottom = Constants.SCREEN_HEIGHT

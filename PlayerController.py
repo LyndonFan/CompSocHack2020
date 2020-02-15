@@ -19,7 +19,7 @@ class PlayerController:
             elif event.key == pygame.K_DOWN:
                 self.player.changespeed(0, 3)
                 self.shadow.changespeed(0, -3)
-            elif event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE:
                 print("TEST")
                 (mx,my) = pygame.mouse.get_pos()
                 self.player.shoot(mx,my)
@@ -46,16 +46,9 @@ class PlayerController:
         if self.shadow.rect.collidelist(en) >= 0:
             print("Collided with shadow")
         self.player.update()
-        self.shadow.rect.x = Constants.SCREEN_WIDTH - self.player.rect.x
-        self.shadow.rect.y = Constants.SCREEN_HEIGHT - self.player.rect.y
-        for b in self.player.bullets:
-            b.update()
-        for b in self.shadow.bullets:
-            b.update()
+        self.shadow.rect.x = Constants.SCREEN_WIDTH - self.player.rect.x - self.player.rect.width
+        self.shadow.rect.y = Constants.SCREEN_HEIGHT - self.player.rect.y - self.player.rect.height
+
     def draw(self,surface):
         self.player.draw(surface)
         self.shadow.draw(surface)
-        for b in self.player.bullets:
-            b.draw(surface)
-        for b in self.shadow.bullets:
-            b.draw(surface)

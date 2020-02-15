@@ -1,5 +1,6 @@
 import pygame
 from Constants import Constants
+from Game import Game
 class Enemy(pygame.sprite.Sprite):
 
 
@@ -28,4 +29,10 @@ class Enemy(pygame.sprite.Sprite):
         if (self.rect.top < 0 or self.rect.bottom > Constants.SCREEN_HEIGHT):
             self.dy *= -1
         self.rect = self.rect.move(self.dx,self.dy)
+    def shot(self):
+        if self.rect.collidelist(Game.bullets) >= 0:
+            print("Enemy was shot")
+            Game.score += 1
+            return True
+        return False
 

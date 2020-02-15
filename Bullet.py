@@ -20,7 +20,7 @@ class Bullet(pygame.sprite.Sprite):
         self.change_x = change_x
         self.change_y = change_y
 
-    def draw(self,surface):
+    def draw(self, surface):
         surface.blit(self.image,self.rect)
 
     def update(self):

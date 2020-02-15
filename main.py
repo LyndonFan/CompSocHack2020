@@ -22,9 +22,10 @@ for i in range(1):
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
+            print("Score = " , Game.score)
             sys.exit()
         elif event.type in (pygame.KEYUP,pygame.KEYDOWN):
-            if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE):
+            if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE ):
                 Game.player.handleEvent(event)
 
 
@@ -32,6 +33,10 @@ while True:
     for en in Game.enemies:
         en.step()
         en.draw(screen)
+    Game.enemies = [x for x in Game.enemies if not x.shot()]
+    for b in Game.bullets:
+        b.update()
+        b.draw(screen)
     Game.player.update(Game.enemies)
     Game.player.draw(screen)
 
