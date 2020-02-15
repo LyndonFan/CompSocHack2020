@@ -7,18 +7,20 @@ import random
 import math
 class Spawner:
     threshhold = 10000.0
-    powerHold = 0
+    powerHold = 5000
     minEnemies = 1
     maxEnemies = 50
     lastSpawn = 0.0
 
+
     lastPower = 0.0
     def canPower(t):
-        if t-Spawner.lastPower > Spawner.threshhold:
+        if t-Spawner.lastPower > Spawner.powerHold:
             Spawner.lastPower = t
             return True
         return False
-    def enemy():
+
+    def power():
         spawned = False
         while not spawned:
             px = random.randint(0,Constants.SCREEN_WIDTH)
@@ -36,7 +38,7 @@ class Spawner:
         if len(Game.enemies) >= Spawner.maxEnemies:
             return False
         dt = t - Spawner.lastSpawn
-        if (dt>Spawner.threshhold/(1.0+Game.score**1.1)):
+        if (dt>Spawner.threshhold/(1.0+Game.score**0.1)):
             Spawner.lastSpawn = t
             return True
         return False
