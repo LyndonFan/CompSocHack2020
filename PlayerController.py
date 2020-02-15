@@ -9,23 +9,21 @@ class PlayerController:
     def handleEvent(self,event):
         if self.alive:
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_A:
                     self.player.changespeed(-3, 0)
                     self.shadow.changespeed(3, 0)
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT or event.key == pygame.K_D:
                     self.player.changespeed(3, 0)
                     self.shadow.changespeed(-3, 0)
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP or event.key == pygame.K_W:
                     self.player.changespeed(0, -3)
                     self.shadow.changespeed(0, 3)
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_S:
                     self.player.changespeed(0, 3)
                     self.shadow.changespeed(0, -3)
-                if event.key == pygame.K_SPACE:
-                    print("TEST")
-                    (mx,my) = pygame.mouse.get_pos()
-                    self.player.shoot(mx,my)
-                    self.shadow.shoot(mx,my)
+                if event.key == pygame.MOUSEBUTTONDOWN:
+                    self.player.is_shooting = True
+                    self.shadow.is_shooting = True
                     #all_sprite_list.add(player1.bullets[-1])
                     #all_sprite_list.add(player2.bullets[-1])
 
@@ -42,7 +40,16 @@ class PlayerController:
                 elif event.key == pygame.K_DOWN:
                     self.shadow.changespeed(0, 3)
                     self.player.changespeed(0, -3) 
+                if event.key == pygame.MOUSEBUTTONUP:
+                    self.player.is_shooting = False
+                    self.shadow.is_shooting = False
+                    #all_sprite_list.add(player1.bullets[-1])
+                    #all_sprite_list.add(player2.bullets[-1])
            
+            if self.player.is_shooting:
+                (mx,my) = pygame.mouse.get_pos()
+                self.player.target_x, self.player.target_y = (mx,my)
+                self.shadow.target_x, self.shadow.target_y = (mx,my)
 
 
     def update(self,en):
@@ -52,9 +59,10 @@ class PlayerController:
         if self.shadow.rect.collidelist(en) >= 0:
             print("Collided with shadow")
             self.alive = False
-        self.player.update()
         self.shadow.rect.x = Constants.SCREEN_WIDTH - self.player.rect.x - self.player.rect.width
         self.shadow.rect.y = Constants.SCREEN_HEIGHT - self.player.rect.y - self.player.rect.height
+        self.player.update()
+        self.shadow.update()
 
     def draw(self,surface):
         self.player.draw(surface)

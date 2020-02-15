@@ -32,8 +32,8 @@ while True:
                 print("Score = " , Game.score)
                 sys.exit()
             elif event.type in (pygame.KEYUP,pygame.KEYDOWN):
-                #if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE ):
-                Game.player.handleEvent(event)
+                if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE ):
+                    Game.player.handleEvent(event)
 
         screen.fill((0,0,0))
         for en in Game.enemies:
@@ -60,10 +60,15 @@ while True:
                 sys.exit()
             if not (Game.player.alive) and event.type == pygame.MOUSEBUTTONDOWN:
                 Game.player.alive = True
-        text = font.render("YOU DIED\nSCORE: "+str(Game.score)+"\nCLICK TO RESTART", True, (255, 255, 255))
+        text1 = font.render("YOU DIED", True, (255, 255, 255))
+        text2 = font.render("SCORE: "+str(Game.score), True, (255, 255, 255))
+        text3 = font.render("CLICK TO RESTART", True, (255, 255, 255))
 
         screen.fill((50,0,0))
         Game.player.draw(screen)
-        screen.blit(text,(Constants.SCREEN_WIDTH//2 - text.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text.get_height() // 2))
+        screen.blit(text1,(Constants.SCREEN_WIDTH//2 - text1.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text1.get_height() - text2.get_height() // 2))
+        screen.blit(text2,(Constants.SCREEN_WIDTH//2 - text2.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text2.get_height() // 2))
+        screen.blit(text3,(Constants.SCREEN_WIDTH//2 - text3.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text3.get_height() - text2.get_height() // 2))
+
         pygame.display.update()
         clock.tick(60)

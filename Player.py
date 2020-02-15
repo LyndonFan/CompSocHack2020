@@ -22,7 +22,10 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
         self.change_y = 0
         
-        # self.bullets = []
+        # for shooting
+        self.isShooting = False
+        self.target_x = 0
+        self.target_y = 0
  
     def changespeed(self, x, y):
         """ Change the speed of the player. """
@@ -31,16 +34,6 @@ class Player(pygame.sprite.Sprite):
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
-
-    def shoot(self, target_x, target_y):
-        from Game import Game
-        dx = float(target_x - self.rect.x)
-        dy = float(target_y - self.rect.y)
-        mag = math.sqrt(dx**2 + dy**2)
-        if not(mag == 0):
-            dx *= 10.0 / mag
-            dy *= 10.0 / mag
-            Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
 
     def update(self):
         """ Update the player position. """
@@ -63,3 +56,12 @@ class Player(pygame.sprite.Sprite):
                 self.rect.bottom = Constants.SCREEN_HEIGHT
             else:
                 self.rect.top = 0
+        
+        from Game import Game
+        dx = float(self.target_x - self.rect.x)
+        dy = float(self.target_y - self.rect.y)
+        mag = math.sqrt(dx**2 + dy**2)
+        if not(mag == 0):
+            dx *= 10.0 / mag
+            dy *= 10.0 / mag
+            Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
