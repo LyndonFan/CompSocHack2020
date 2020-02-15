@@ -9,18 +9,18 @@ class Power(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # Set height, width
-        self.image = pygame.Surface([15, 15])
-        self.clr = Constants.BLUE
-        self.image.fill(self.clr)
-
+        self.mode = random.randint(1,2)
+        Game.powers.append(self)
+        pic_name = ['','fast.png','radial.png']
+        self.image = pygame.transform.scale(pygame.image.load(pic_name[self.mode]), (15,15))
         self.rect = self.image.get_rect()
         self.rect.centery = y
         self.rect.centerx = x
-        self.mode = random.randint(1,2)
-        Game.powers.append(self)
+        
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
+
     def update(self):
         if self.rect.colliderect(Game.player.player.rect):
             Game.player.player.shoot_mode = self.mode
