@@ -2,32 +2,27 @@ import pygame
 from Constants import Constants
 from Bullet import Bullet
 
+
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, clr):
+    def __init__(self, main_player):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
  
         # Set height, width
         self.image = pygame.Surface([15, 15])
-        self.clr = clr
-        self.image.fill(clr)
+        self.image.fill([x for x in main_player.clr] + [120])
  
         # Make our top-left corner the passed-in location.
         self.rect = self.image.get_rect()
-        self.rect.y = y
-        self.rect.x = x
+        self.rect.y = Constants.SCREEN_HEIGHT - main_player.rect.y
+        self.rect.x = Constants.SCREEN_WIDTH - main_player.rect.x
  
         # Set speed vector
-        self.change_x = 0
-        self.change_y = 0
+        self.change_x = main_player.change_x*-1
+        self.change_y = main_player.change_y*-1
         
         self.bullets = []
- 
-    def changespeed(self, x, y):
-        """ Change the speed of the player. """
-        self.change_x += x
-        self.change_y += y
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
@@ -37,6 +32,10 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         """ Update the player position. """
+
+        self.change_x = main_player.change_x*-1
+        self.change_y = main_player.change_y*-1
+
         # Move left/right
         self.rect.x += self.change_x
  
