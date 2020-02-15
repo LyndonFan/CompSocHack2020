@@ -4,7 +4,7 @@ from Player import *
 # Colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-TRANS = (255, 255, 255, 170)
+TRANS = (255, 255, 0, 170)
 BLUE = (50, 50, 255)
  
 # Screen dimensions

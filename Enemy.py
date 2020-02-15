@@ -1,19 +1,26 @@
 import pygame
 from Constants import Constants
-class Enemy:
+class Enemy(pygame.sprite.Sprite):
 
 
     width = 20
     height = 40.0
 
     def __init__(self, px,py,dx,dy):
+
+
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = pygame.Surface([Enemy.width,Enemy.height])
+        self.image.fill((0,200,0))
+
         self.rect = pygame.Rect(px-Enemy.width/2, py-Enemy.height/2, Enemy.width,Enemy.height)
         self.dx = dx
         self.dy = dy
         #place the enemy at the centre of the screen
 
     def draw(self,surface):
-        pygame.draw.rect(surface, (0,255,0),self.rect)
+        surface.blit(self.image,self.rect)
 
     def step(self):
         if (self.rect.left < 0 or self.rect.right > Constants.SCREEN_WIDTH):
