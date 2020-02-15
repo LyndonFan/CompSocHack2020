@@ -15,12 +15,8 @@ class Enemy(pygame.sprite.Sprite):
 
         self.type = random.randint(0,2)
         pygame.sprite.Sprite.__init__(self)
-        if self.type==0:
-        	self.image = pygame.transform.scale(pygame.image.load('sanic.png'), (Enemy.width,Enemy.height))
-        elif self.type==2:
-        	self.image = pygame.transform.scale(pygame.image.load('sandow.png'), (Enemy.width,Enemy.height))
-        else:
-        	self.image = pygame.transform.scale(pygame.image.load('sonic.png'), (Enemy.width,Enemy.height))
+        pic_name = ['sanic.png','sonic.png','sandow.png']
+        self.image = pygame.transform.scale(pygame.image.load(pic_name[self.type]), (Enemy.width,Enemy.height))
         #self.image.fill((0,200,0))
 
         self.rect = pygame.Rect(px-Enemy.width/2, py-Enemy.height/2, Enemy.width,Enemy.height)
