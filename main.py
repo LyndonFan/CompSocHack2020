@@ -14,10 +14,10 @@ enemies = []
 
 player = PlayerController()
 
-for i in range(-10,10):
+for i in range(1):
     th = random.random()*math.pi*2
-    dx = i*math.cos(th)
-    dy = i*math.sin(th)
+    dx = 1#i*math.cos(th)
+    dy = 1#i/10*math.sin(th)
     enemies.append(Enemy(Constants.SCREEN_WIDTH/2 ,Constants.SCREEN_HEIGHT/2 , dx, dy))
 
 
@@ -26,7 +26,7 @@ while True:
         if event.type == QUIT:
             sys.exit()
         elif event.type in (pygame.KEYUP,pygame.KEYDOWN):
-            if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN):
+            if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE):
                 player.handleEvent(event)
 
 
@@ -34,7 +34,7 @@ while True:
     for en in enemies:
         en.step()
         en.draw(screen)
-    player.update()
+    player.update(enemies)
     player.draw(screen)
 
     pygame.display.update()

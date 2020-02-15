@@ -8,7 +8,7 @@ class Bullet(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
  
         # Set height, width
-        self.image = pygame.Surface([2, 2])
+        self.image = pygame.Surface([20, 20])
         self.image.fill((120,120,120))
  
         # Make our top-left corner the passed-in location.

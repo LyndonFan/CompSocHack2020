@@ -19,6 +19,13 @@ class PlayerController:
             elif event.key == pygame.K_DOWN:
                 self.player.changespeed(0, 3)
                 self.shadow.changespeed(0, -3)
+            elif event.key == pygame.K_SPACE:
+                print("TEST")
+                (mx,my) = pygame.mouse.get_pos()
+                self.player.shoot(mx,my)
+                self.shadow.shoot(mx,my)
+                #all_sprite_list.add(player1.bullets[-1])
+                #all_sprite_list.add(player2.bullets[-1])
 
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
@@ -33,10 +40,22 @@ class PlayerController:
             elif event.key == pygame.K_DOWN:
                 self.shadow.changespeed(0, 3)
                 self.player.changespeed(0, -3)
-    def update(self):
+    def update(self,en):
+        if self.player.rect.collidelist(en) >= 0:
+            print("Collided with enemy")
+        if self.shadow.rect.collidelist(en) >= 0:
+            print("Collided with shadow")
         self.player.update()
-        self.shadow.rect.x = Constants.SCREEN_WIDTH-self.player.rect.x
+        self.shadow.rect.x = Constants.SCREEN_WIDTH - self.player.rect.x
         self.shadow.rect.y = Constants.SCREEN_HEIGHT - self.player.rect.y
+        for b in self.player.bullets:
+            b.update()
+        for b in self.shadow.bullets:
+            b.update()
     def draw(self,surface):
         self.player.draw(surface)
         self.shadow.draw(surface)
+        for b in self.player.bullets:
+            b.draw(surface)
+        for b in self.shadow.bullets:
+            b.draw(surface)
