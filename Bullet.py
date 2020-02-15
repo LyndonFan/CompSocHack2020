@@ -1,9 +1,9 @@
 import pygame
-import Constants
+from Constants import Constants
 
 class Bullet(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, change_x, change_y)):
+    def __init__(self, x, y, change_x, change_y):
         # Call the parent's constructor
         pygame.sprite.Sprite.__init__(self)
  

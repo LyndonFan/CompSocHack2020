@@ -1,6 +1,6 @@
 import pygame
-import Constants
-import Bullet
+from Constants import Constants
+from Bullet import Bullet
 
 class Player(pygame.sprite.Sprite):
 
@@ -32,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         surface.blit(self.image,self.rect)
 
     def shoot(self):
-        self.bullets.append(Bullet(self.x, self.y, self.change_x, self.change_y))
+        self.bullets.append(Bullet(self.rect.x, self.rect.y, self.change_x, self.change_y))
 
     def update(self):
         """ Update the player position. """
