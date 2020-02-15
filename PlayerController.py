@@ -3,6 +3,7 @@ from Constants import Constants
 import pygame
 class PlayerController:
     def __init__(self):
+        self.alive = True
         self.player = Player(Constants.SCREEN_WIDTH // 2 - 50, Constants.SCREEN_HEIGHT // 2, Constants.WHITE)
         self.shadow = Player(0,0,Constants.TRANS)
     def handleEvent(self,event):
@@ -43,8 +44,10 @@ class PlayerController:
     def update(self,en):
         if self.player.rect.collidelist(en) >= 0:
             print("Collided with enemy")
+            self.alive = False
         if self.shadow.rect.collidelist(en) >= 0:
             print("Collided with shadow")
+            self.alive = False
         self.player.update()
         self.shadow.rect.x = Constants.SCREEN_WIDTH - self.player.rect.x - self.player.rect.width
         self.shadow.rect.y = Constants.SCREEN_HEIGHT - self.player.rect.y - self.player.rect.height

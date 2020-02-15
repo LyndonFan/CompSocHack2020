@@ -10,7 +10,7 @@ pygame.init()
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((Constants.SCREEN_WIDTH,Constants.SCREEN_HEIGHT))
 
-for i in range(10):
+for i in range(100):
     th = random.random()*math.pi*2
     dx = i*math.cos(th)
     dy = i*math.sin(th)
@@ -18,7 +18,7 @@ for i in range(10):
 
 font = pygame.font.SysFont("arial", 24)
 
-while True:
+while Game.player.alive:
     for event in pygame.event.get():
         if event.type == QUIT:
             print("Score = " , Game.score)
@@ -43,5 +43,16 @@ while True:
     Game.player.draw(screen)
     screen.blit(text,(text.get_width() // 2, text.get_height() // 2))
 
+    pygame.display.update()
+    clock.tick(60)
+
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            print("Score = " , Game.score)
+            sys.exit()
+
+
+    screen.fill((50,0,0))
     pygame.display.update()
     clock.tick(60)
