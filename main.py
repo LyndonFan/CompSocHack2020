@@ -18,6 +18,7 @@ while True:
     Game.score = 0
     Game.enemies = []
     Game.bullets = []
+    Game.powers = []
     # for i in range(10):w
     #     th = random.random()*math.pi*2
     #     dx = i*math.cos(th)
