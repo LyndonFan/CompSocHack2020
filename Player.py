@@ -26,6 +26,7 @@ class Player(pygame.sprite.Sprite):
         self.shoot_countdown = 0
         self.power_counter = 0
         self.shoot_mode = 0
+        self.clrs = [Constants.BLUE,Constants.RED,Constants.YELLOW]
 
     def changespeed(self, x, y):
         """ Change the speed of the player. """
@@ -34,7 +35,7 @@ class Player(pygame.sprite.Sprite):
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
-        pygame.draw.circle(surface,Constants.BLUE,(self.rect.x,self.rect.y),int(Constants.SAFE_ZONE),2)
+        pygame.draw.circle(surface,self.clrs[self.shoot_mode],(self.rect.x,self.rect.y),int(Constants.SAFE_ZONE),2)
 
     def update(self):
         """ Update the player position. """
