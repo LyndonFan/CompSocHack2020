@@ -7,8 +7,8 @@ import os
 class Enemy(pygame.sprite.Sprite):
 
 
-    width = 30
-    height = 30
+    width = 50
+    height = 50
     follow_speed = 2.0
 
     def __init__(self, px,py,dx,dy):
