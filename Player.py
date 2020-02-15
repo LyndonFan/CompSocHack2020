@@ -30,8 +30,8 @@ class Player(pygame.sprite.Sprite):
 
     def changespeed(self, x, y):
         """ Change the speed of the player. """
-        self.change_x += x * (2 if self.shoot_mode==1 else 1)
-        self.change_y += y * (2 if self.shoot_mode==1 else 1)
+        self.change_x += x
+        self.change_y += y# * (2 if self.shoot_mode==1 else 1)
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
@@ -40,7 +40,7 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         """ Update the player position. """
         # Move left/right
-        self.rect.x += self.change_x
+        self.rect.x += self.change_x * (2 if self.shoot_mode==1 else 1)
  
         # Did this update cause us to hit a wall?
         if self.rect.x < 0 or self.rect.x > Constants.SCREEN_WIDTH - self.rect.width:
@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
                 # Otherwise if we are moving left, do the opposite.
                 self.rect.left = 0
         
-        self.rect.y += self.change_y
+        self.rect.y += self.change_y * (2 if self.shoot_mode==1 else 1)
  
         if self.rect.y < 0 or self.rect.y > Constants.SCREEN_HEIGHT - self.rect.height:
             # Reset our position based on the top/bottom of the object.

@@ -27,7 +27,7 @@ class Enemy(pygame.sprite.Sprite):
             self.dx = random.choice([-5,-3,3,5])
             self.dy = random.choice([-5,-3,3,5])
             if self.dx<0:
-            	self.image = pygame.transform.flip(self.image,True,False)
+                self.image = pygame.transform.flip(self.image,True,False)
         #place the enemy at the centre of the screen
         Game.enemies.append(self)
     def draw(self,surface):
@@ -53,7 +53,7 @@ class Enemy(pygame.sprite.Sprite):
             self.dx = float(Enemy.follow_speed*self.dx/mag)
             self.dy = float(Enemy.follow_speed*self.dy/mag)
             if (prev_dx==0 and self.dx<0) or prev_dx * self.dx < 0:
-            	self.image = pygame.transform.flip(self.image,True,False)
+                self.image = pygame.transform.flip(self.image,True,False)
 
         self.rect = self.rect.move(self.dx,self.dy)
     def shot(self):
