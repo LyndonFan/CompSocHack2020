@@ -1,7 +1,7 @@
 import pygame
 from Constants import Constants
 from Bullet import Bullet
-
+import math
 class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y, clr):
@@ -33,12 +33,12 @@ class Player(pygame.sprite.Sprite):
         surface.blit(self.image,self.rect)
 
     def shoot(self, target_x, target_y):
-        dx = target_x - self.rect.x
-        dy = target_y - self.rect.y
-        mag = dx**2 + dy**2
+        dx = float(target_x - self.rect.x)
+        dy = float(target_y - self.rect.y)
+        mag = math.sqrt(dx**2 + dy**2)
         if not(mag == 0):
-            dx *= 10 / mag
-            dy *= 10 / mag
+            dx *= 10.0 / mag
+            dy *= 10.0 / mag
             self.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
 
     def update(self):
