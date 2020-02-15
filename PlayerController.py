@@ -35,4 +35,8 @@ class PlayerController:
                 self.player.changespeed(0, -3)
     def update(self):
         self.player.update()
-        self.shadow.rect.x
+        self.shadow.rect.x = Constants.SCREEN_WIDTH-self.player.rect.x
+        self.shadow.rect.y = Constants.SCREEN_HEIGHT - self.player.rect.y
+    def draw(self,surface):
+        self.player.draw(surface)
+        self.shadow.draw(surface)
