@@ -22,11 +22,6 @@ class Player(pygame.sprite.Sprite):
         self.change_x = 0
         self.change_y = 0
         
-        # for shooting
-        self.isShooting = False
-        self.target_x = 0
-        self.target_y = 0
- 
     def changespeed(self, x, y):
         """ Change the speed of the player. """
         self.change_x += x
@@ -57,9 +52,9 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.rect.top = 0
         
-        from Game import Game
-        dx = float(self.target_x - self.rect.x)
-        dy = float(self.target_y - self.rect.y)
+        mx,my = pygame.mouse.get_pos()
+        dx = float(mx - self.rect.x)
+        dy = float(my - self.rect.y)
         mag = math.sqrt(dx**2 + dy**2)
         if not(mag == 0):
             dx *= 10.0 / mag
