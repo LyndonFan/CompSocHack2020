@@ -16,6 +16,7 @@ for i in range(10):
     dy = i*math.sin(th)
     Game.enemies.append(Enemy(Constants.SCREEN_WIDTH/2 ,Constants.SCREEN_HEIGHT/2 , dx, dy))
 
+font = pygame.font.SysFont("arial", 24)
 
 while True:
     for event in pygame.event.get():
@@ -26,7 +27,6 @@ while True:
             if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE ):
                 Game.player.handleEvent(event)
 
-
     screen.fill((0,0,0))
     for en in Game.enemies:
         en.step()
@@ -36,7 +36,12 @@ while True:
         b.update()
         b.draw(screen)
     Game.player.update(Game.enemies)
+
+
+    text = font.render("SCORE: "+str(Game.score), True, (255, 255, 255))
+
     Game.player.draw(screen)
+    screen.blit(text,(text.get_width() // 2, text.get_height() // 2))
 
     pygame.display.update()
     clock.tick(60)
