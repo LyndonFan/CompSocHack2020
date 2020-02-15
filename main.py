@@ -18,6 +18,7 @@ for i in range(100):
 
 font = pygame.font.SysFont("arial", 24)
 
+
 while Game.player.alive:
     for event in pygame.event.get():
         if event.type == QUIT:
