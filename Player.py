@@ -25,7 +25,10 @@ class Player(pygame.sprite.Sprite):
         """ Change the speed of the player. """
         self.change_x += x
         self.change_y += y
- 
+
+    def draw(self,surface):
+        surface.blit(self.image,self.rect)
+
     def update(self):
         """ Update the player position. """
         # Move left/right
