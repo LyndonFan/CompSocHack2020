@@ -31,6 +31,7 @@ class Player(pygame.sprite.Sprite):
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
+        surface.draw.circle(self.image,Constants.BLUE,(self.x,self.y),Constants.SAFE_ZONE,2)
 
     def update(self):
         """ Update the player position. """
