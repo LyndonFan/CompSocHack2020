@@ -9,16 +9,16 @@ class PlayerController:
     def handleEvent(self,event):
         if self.alive:
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT or event.key == pygame.K_A:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     self.player.changespeed(-3, 0)
                     self.shadow.changespeed(3, 0)
-                elif event.key == pygame.K_RIGHT or event.key == pygame.K_D:
+                elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     self.player.changespeed(3, 0)
                     self.shadow.changespeed(-3, 0)
-                elif event.key == pygame.K_UP or event.key == pygame.K_W:
+                elif event.key == pygame.K_UP or event.key == pygame.K_w:
                     self.player.changespeed(0, -3)
                     self.shadow.changespeed(0, 3)
-                elif event.key == pygame.K_DOWN or event.key == pygame.K_S:
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     self.player.changespeed(0, 3)
                     self.shadow.changespeed(0, -3)
                 if event.key == pygame.MOUSEBUTTONDOWN:

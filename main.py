@@ -32,8 +32,8 @@ while True:
                 print("Score = " , Game.score)
                 sys.exit()
             elif event.type in (pygame.KEYUP,pygame.KEYDOWN):
-                if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE ):
-                    Game.player.handleEvent(event)
+                #if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE ):
+                Game.player.handleEvent(event)
 
         screen.fill((0,0,0))
         for en in Game.enemies:
