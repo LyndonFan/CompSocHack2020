@@ -26,12 +26,12 @@ class Player(pygame.sprite.Sprite):
         self.shoot_countdown = 0
         self.power_counter = 0
         self.shoot_mode = 0
-        self.clrs = [Constants.BLUE,Constants.RED,Constants.YELLOW]
+        self.clrs = [Constants.BLUE,Constants.RED,Constants.YELLOW,Constants.GREEN]
 
     def changespeed(self, x, y):
         """ Change the speed of the player. """
-        self.change_x += x
-        self.change_y += y
+        self.change_x += x * (2 if self.shoot_mode==1 else 1)
+        self.change_y += y * (2 if self.shoot_mode==1 else 1)
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
@@ -76,7 +76,7 @@ class Player(pygame.sprite.Sprite):
                     dy *= 10.0 / mag
                     Game.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
                 self.shoot_countdown = 10
-            if self.shoot_mode == 1:
+            if self.shoot_mode == 3:
                 mx,my = pygame.mouse.get_pos()
                 dx = float(mx - self.rect.x)
                 dy = float(my - self.rect.y)
