@@ -68,7 +68,7 @@ while True:
         Game.player.draw(screen)
         screen.blit(text1,(Constants.SCREEN_WIDTH//2 - text1.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text1.get_height()//2 - 3*text2.get_height()//2))
         screen.blit(text2,(Constants.SCREEN_WIDTH//2 - text2.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text2.get_height()//2))
-        screen.blit(text3,(Constants.SCREEN_WIDTH//2 - text3.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text3.get_height()//2 + text2.get_height()//2))
+        screen.blit(text3,(Constants.SCREEN_WIDTH//2 - text3.get_width() // 2, Constants.SCREEN_HEIGHT//2 - text3.get_height()//2 + text2.get_height()))
 
         pygame.display.update()
         clock.tick(60)
