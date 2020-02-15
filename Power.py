@@ -9,9 +9,9 @@ class Power(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # Set height, width
-        self.mode = random.randint(1,2)
+        self.mode = random.randint(1,3)
         Game.powers.append(self)
-        pic_name = ['','fast.png','ring.png']
+        pic_name = ['','boots.png','ring.png','emerald.png']
         self.image = pygame.transform.scale(pygame.image.load(pic_name[self.mode]), (30,30))
         self.rect = self.image.get_rect()
         self.rect.centery = y
