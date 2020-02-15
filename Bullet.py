@@ -31,4 +31,4 @@ class Bullet(pygame.sprite.Sprite):
 
         # Did this update cause us to hit a wall?
         if self.rect.x < 0 or self.rect.x > Constants.SCREEN_WIDTH or self.rect.y < 0 or self.rect.y > Constants.SCREEN_HEIGHT:
-            self.__del__()
+            del self
