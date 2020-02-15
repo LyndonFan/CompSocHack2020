@@ -33,7 +33,13 @@ class Player(pygame.sprite.Sprite):
         surface.blit(self.image,self.rect)
 
     def shoot(self, target_x, target_y):
-        self.bullets.append(Bullet(self.rect.x, self.rect.y, target_x - self.rect.x, target_y - self.rect.y))
+        dx = target_x - self.rect.x
+        dy = target_y - self.rect.y
+        mag = dx**2 + dy**2
+        if not(mag == 0):
+            dx *= 10 / mag
+            dy *= 10 / mag
+            self.bullets.append(Bullet(self.rect.x, self.rect.y, dx, dy))
 
     def update(self):
         """ Update the player position. """
