@@ -51,6 +51,8 @@ class Player(pygame.sprite.Sprite):
                 self.rect.bottom = Constants.SCREEN_HEIGHT
             else:
                 self.rect.top = 0
+        
+        from Game import Game
         mx,my = pygame.mouse.get_pos()
         dx = float(mx - self.rect.x)
         dy = float(my - self.rect.y)
