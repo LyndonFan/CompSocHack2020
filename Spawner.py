@@ -15,7 +15,7 @@ class Spawner:
 
     lastPower = 0.0
     def canPower(t):
-        if t-Spawner.lastPower > Spawner.powerHold
+        if t-Spawner.lastPower > Spawner.powerHold:
             Spawner.lastPower = t
             return True
         return False
