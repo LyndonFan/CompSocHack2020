@@ -9,6 +9,7 @@ BLUE = (50, 50, 255)
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+
 class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):

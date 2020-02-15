@@ -23,8 +23,10 @@ pygame.display.set_caption('Test')
 all_sprite_list = pygame.sprite.Group()
  
 # Create the player paddle object
-player = Player(50, 50)
- 
+player1 = Player(SCREEN_WIDTH//2 - 50, SCREEN_HEIGHT//2)
+player2 = Player(SCREEN_WIDTH//2 + 50, SCREEN_HEIGHT//2)
+
+
 all_sprite_list.add(player)
  
 clock = pygame.time.Clock()
@@ -39,24 +41,32 @@ while not done:
  
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player.changespeed(-3, 0)
+                player1.changespeed(-3, 0)
+                player2.changespeed(3, 0)
             elif event.key == pygame.K_RIGHT:
-                player.changespeed(3, 0)
+                player1.changespeed(3, 0)
+                player2.changespeed(-3, 0)
             elif event.key == pygame.K_UP:
-                player.changespeed(0, -3)
+                player1.changespeed(0, -3)
+                player2.changespeed(0, 3)
             elif event.key == pygame.K_DOWN:
-                player.changespeed(0, 3)
+                player1.changespeed(0, 3)
+                player2.changespeed(0, -3)
  
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                player.changespeed(3, 0)
+                player2.changespeed(-3, 0)
+                player1.changespeed(3, 0)
             elif event.key == pygame.K_RIGHT:
-                player.changespeed(-3, 0)
+                player2.changespeed(3, 0)
+                player1.changespeed(-3, 0)
             elif event.key == pygame.K_UP:
-                player.changespeed(0, 3)
+                player2.changespeed(0, -3)
+                player1.changespeed(0, 3)
             elif event.key == pygame.K_DOWN:
-                player.changespeed(0, -3)
- 
+                player2.changespeed(0, 3)
+                player1.changespeed(0, -3)
+     
     all_sprite_list.update()
  
     screen.fill(BLACK)
