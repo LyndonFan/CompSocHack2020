@@ -19,26 +19,16 @@ class Bullet(pygame.sprite.Sprite):
         # Set speed vector
         self.change_x = change_x
         self.change_y = change_y
- 
+
+    def draw(self,surface):
+        surface.blit(self.image,self.rect)
+
     def update(self):
         """ Update the player position. """
         # Move left/right
         self.rect.x += self.change_x
- 
-        # Did this update cause us to hit a wall?
-        if self.rect.x < 0 or self.rect.x > Constants.SCREEN_WIDTH:
-            if self.change_x > 0:
-                self.rect.right = Constants.SCREEN_WIDTH
-            else:
-                # Otherwise if we are moving left, do the opposite.
-                self.rect.left = 0
-        
         self.rect.y += self.change_y
- 
-        if self.rect.x < 0 or self.rect.x > Constants.SCREEN_HEIGHT:
-            # Reset our position based on the top/bottom of the object.
-            if self.change_y > 0:
-                self.rect.bottom = Constants.SCREEN_HEIGHT
-            else:
-                self.rect.top = 0
 
+        # Did this update cause us to hit a wall?
+        if self.rect.x < 0 or self.rect.x > Constants.SCREEN_WIDTH or self.rect.y < 0 or self.rect.y > Constants.SCREEN_HEIGHT:
+            self.__del__()
