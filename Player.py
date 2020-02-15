@@ -1,6 +1,7 @@
 import pygame
 from Constants import Constants
 from Bullet import Bullet
+from Game import Game
 import math
 class Player(pygame.sprite.Sprite):
 
@@ -64,7 +65,6 @@ class Player(pygame.sprite.Sprite):
                 self.shoot_mode = 0
 
         if self.shoot_countdown==0:
-            from Game import Game
             if self.shoot_mode == 0:
                 mx,my = pygame.mouse.get_pos()
                 dx = float(mx - self.rect.x)
