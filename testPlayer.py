@@ -27,8 +27,10 @@ player1 = Player(SCREEN_WIDTH//2 - 50, SCREEN_HEIGHT//2)
 player2 = Player(SCREEN_WIDTH//2 + 50, SCREEN_HEIGHT//2)
 
 
-all_sprite_list.add(player)
- 
+all_sprite_list.add(player1)
+all_sprite_list.add(player2)
+
+
 clock = pygame.time.Clock()
  
 done = False
