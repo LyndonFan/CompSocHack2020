@@ -4,7 +4,7 @@ import pygame
 class PlayerController:
     def __init__(self):
         self.alive = True
-        self.player = Player(Constants.SCREEN_WIDTH // 2 - 50, Constants.SCREEN_HEIGHT // 2, Constants.WHITE)
+        self.player = Player(Constants.SCREEN_WIDTH // 2 - 50, Constants.SCREEN_HEIGHT // 2, Constants.BLUE)
         self.shadow = Player(0,0,Constants.TRANS)
     def handleEvent(self,event):
         if self.alive:
@@ -34,7 +34,12 @@ class PlayerController:
                     self.player.changespeed(0, 3)
                 elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     self.shadow.changespeed(0, 3)
-                    self.player.changespeed(0, -3) 
+                    self.player.changespeed(0, -3)
+    def reset(self):
+    	self.player.change_x = 0
+    	self.player.change_y = 0
+    	self.shadow.change_x = 0
+    	self.player.change_y = 0 
 
 
 

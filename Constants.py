@@ -4,7 +4,7 @@ class Constants:
 
     BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
-    TRANS = (255, 255, 0, 170)
+    TRANS = (170, 170, 170, 170)
     BLUE = (50, 50, 255)
     GREEN = (0,255,0)
     YELLOW = (255,255,0)

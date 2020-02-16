@@ -38,7 +38,7 @@ while True:
                 #if event.key in (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_SPACE ):
                 Game.player.handleEvent(event)
 
-        screen.fill((0,0,0))
+        screen.fill(Constants.WHITE)
         for en in Game.enemies:
             en.step()
             en.draw(screen)
